@@ -1,14 +1,14 @@
 class Solution(object):
     def isValid(self, s):
-        result = False
-        for char in range(len(s)):
-            if s[char] not in "{([":
-                continue
-            if s[char] == "(" and s[char+1] == ")" or \
-            s[char] == "[" and s[char+1] == "]" or \
-            s[char] == "{" and s[char+1] == "}":
-                result = True
+        stack = []
+        for char in s:
+            if char in "([{":
+                stack.append(char)
             else:
-                result = False
-                continue
-        return result
+                if not stack or \
+                    char == ")" and stack[-1] != "(" \
+                    or char == "}" and stack[-1] != "{" \
+                    or char == "]" and stack[-1] != "[":
+                    return False
+                stack.pop()
+        return not stack
