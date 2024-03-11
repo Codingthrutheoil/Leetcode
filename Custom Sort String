@@ -1,0 +1,21 @@
+class Solution(object):
+    def customSortString(self, order, s):
+        """
+        :type order: str
+        :type s: str
+        :rtype: str
+        """
+        output = []
+        count_s = {letter:s.count(letter) for letter in s}
+        for char in order:
+            if char in s:
+                output.append(char)
+            if char in count_s.keys():
+                while count_s[char] > 1:
+                    count_s[char] = count_s[char] - 1
+                    output.append(char)
+        for a in s:
+            if a not in order:
+                output.append(a)
+        output = ''.join(output)
+        return output
