@@ -1,0 +1,19 @@
+class Solution(object):
+    def pivotArray(self, nums, pivot):
+        """
+        :type nums: List[int]
+        :type pivot: int
+        :rtype: List[int]
+        """
+        low_nums = []
+        pivot_nums = []
+        high_nums = []
+
+        for a in nums:
+            if a < pivot:
+                low_nums.append(a)
+            elif a == pivot:
+                pivot_nums.append(a)
+            else:
+                high_nums.append(a)
+        return(low_nums+pivot_nums+high_nums)
